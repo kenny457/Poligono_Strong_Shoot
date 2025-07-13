@@ -357,15 +357,28 @@ header nav ul li a:hover {
     margin-bottom: 10px;
 }
 
+/* Estilos para el enlace de WhatsApp */
+.whatsapp-link {
+    color: #25D366; /* Verde distintivo de WhatsApp */
+    font-weight: bold; /* Hacerlo más negrita */
+    text-decoration: none; /* Quitar subrayado por defecto */
+    transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.whatsapp-link:hover {
+    color: #1DA851; /* Un verde un poco más oscuro al pasar el ratón */
+    text-decoration: underline; /* Subrayar al pasar el ratón */
+}
+
 .contact-info a {
     color: var(--primary-color);
     text-decoration: none;
     font-weight: bold;
 }
-
 .contact-info a:hover {
     text-decoration: underline;
 }
+
 
 .map-embed {
     margin-top: 30px;
@@ -448,7 +461,7 @@ footer p {
         height: 300px; /* Ajusta la altura del mapa para móviles */
         padding-bottom: 0;
     }
-    /* Estilos para ocultar/mostrar secciones */
+ /* Estilos para el enlace de WhatsApp como un pequeño botón */
 
 
 }
