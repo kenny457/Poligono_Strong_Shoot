@@ -18,8 +18,6 @@ body {
     padding: 0;
     color: var(--text-dark);
     background-color: #fff;
-    /* --- CAMBIO 1: COMPENSACIÓN PARA EL HEADER FIJO EN ESCRITORIO --- */
-    padding-top: 85px; 
 }
 
 .container {
@@ -73,12 +71,6 @@ header {
     color: var(--text-light);
     padding: 15px 0;
     border-bottom: 3px solid var(--primary-color);
-    /* --- CAMBIO 2: PROPIEDADES PARA HACER EL HEADER FIJO --- */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Asegura que esté por encima de todo */
 }
 
 header .container {
@@ -163,114 +155,8 @@ header nav ul li a:hover {
     font-size: 1.2em;
     margin-bottom: 30px;
 }
-/* Nuevo diseño de Tarjetas y Cuadrículas */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 40px;
-    text-align: center;
-}
 
-.service-card {
-    background: #fff;
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    text-align: center;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-}
-
-.service-card i {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-}
-
-.service-card h4 {
-    margin: 0 0 10px;
-    color: var(--secondary-color);
-}
-
-.service-card p {
-    color: #666;
-}
-
-/* Rediseño de la sección de Instructores */
-.instructors-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.instructor-card {
-    background: var(--light-bg);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    border-top: 4px solid var(--primary-color);
-    transition: transform 0.3s ease;
-}
-
-.instructor-card:hover {
-    transform: translateY(-5px);
-}
-
-.instructor-card h5 {
-    color: var(--secondary-color);
-    margin-top: 0;
-    font-size: 1.5em;
-    position: relative;
-}
-
-.instructor-card h5::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 2px;
-    background: var(--primary-color);
-    margin: 10px auto 0;
-}
-
-.instructor-card p {
-    color: #666;
-    font-style: italic;
-    margin-top: 15px;
-}
-
-/* Rediseño de la sección de Contacto */
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 40px;
-    align-items: center;
-}
-
-.contact-info {
-    text-align: center;
-    margin: 0;
-    padding: 20px;
-}
-
-.contact-info p {
-    margin-bottom: 15px;
-    font-size: 1.2em;
-}
-
-/* Ajustes para pantallas grandes */
-@media (min-width: 992px) {
-    .contact-grid {
-        grid-template-columns: 1fr 1.5fr;
-        text-align: left;
-    }
-}
-/* Services Grid 
+/* Services Grid */
 .service-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -295,7 +181,7 @@ header nav ul li a:hover {
     color: var(--primary-color);
     margin-top: 0;
 }
-*/
+
 /* Galería de Imágenes y Videos */
 #galeria h4 {
     margin-top: 40px;
@@ -545,11 +431,6 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    /* --- CAMBIO 3: COMPENSACIÓN PARA EL HEADER FIJO EN MÓVIL (HEADER APILADO) --- */
-    body {
-        padding-top: 200px; 
-    }
-
     header .container {
         flex-direction: column;
         text-align: center;
@@ -580,7 +461,10 @@ footer p {
         height: 300px; /* Ajusta la altura del mapa para móviles */
         padding-bottom: 0;
     }
+ /* Estilos para el enlace de WhatsApp como un pequeño botón */
+
 
 }
+
 
 
