@@ -11,11 +11,6 @@
     --padding-section: 60px 0;
 }
 
-/* Corrección para contenido debajo del menú fijo */
-#inicio {
-    margin-top: 90px;
-}
-
 body {
     font-family: var(--font-family);
     line-height: 1.6;
@@ -23,6 +18,8 @@ body {
     padding: 0;
     color: var(--text-dark);
     background-color: #fff;
+    /* --- CAMBIO 1: COMPENSACIÓN PARA EL HEADER FIJO EN ESCRITORIO --- */
+    padding-top: 85px; 
 }
 
 .container {
@@ -76,12 +73,12 @@ header {
     color: var(--text-light);
     padding: 15px 0;
     border-bottom: 3px solid var(--primary-color);
-    /* --- INICIO de adición para Menú Fijo --- */
-    position: fixed; /* Fija el elemento a la ventana del navegador */
-    top: 0;          /* Lo posiciona en la parte superior de la ventana */
-    width: 100%;     /* Asegura que ocupe todo el ancho */
-    z-index: 1000;   /* Asegura que esté por encima de otros elementos */
-    /* --- FIN de adición para Menú Fijo --- */
+    /* --- CAMBIO 2: PROPIEDADES PARA HACER EL HEADER FIJO --- */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Asegura que esté por encima de todo */
 }
 
 header .container {
@@ -273,7 +270,32 @@ header nav ul li a:hover {
         text-align: left;
     }
 }
+/* Services Grid 
+.service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    text-align: center;
+}
 
+.service-item {
+    background: #fff;
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.service-item:hover {
+    transform: translateY(-5px);
+}
+
+.service-item h4 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+*/
 /* Galería de Imágenes y Videos */
 #galeria h4 {
     margin-top: 40px;
@@ -451,13 +473,16 @@ header nav ul li a:hover {
 
 /* Estilos para el enlace de WhatsApp */
 .whatsapp-link {
-    color: #5c0c0c; /* Verde distintivo de WhatsApp */
+    color: #25D366; /* Verde distintivo de WhatsApp */
     font-weight: bold; /* Hacerlo más negrita */
     text-decoration: none; /* Quitar subrayado por defecto */
     transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave al pasar el ratón */
 }
 
-
+.whatsapp-link:hover {
+    color: #1DA851; /* Un verde un poco más oscuro al pasar el ratón */
+    text-decoration: underline; /* Subrayar al pasar el ratón */
+}
 
 .contact-info a {
     color: var(--primary-color);
@@ -467,30 +492,6 @@ header nav ul li a:hover {
 .contact-info a:hover {
     text-decoration: underline;
 }
-
-/* Estilo para el botón de WhatsApp Flotante */
-        .whatsapp-float {
-            position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            border-radius: 50px;
-            text-align: center;
-            box-shadow: 2px 2px 3px #999;
-            z-index: 1000;
-            /* Estos estilos ya no son necesarios si usamos una imagen con sus propios colores */
-            /* display: flex; 
-            align-items: center;
-            justify-content: center; */
-        }
-        .whatsapp-float img {
-            width: 100%; /* La imagen ocupa todo el contenedor */
-            height: 100%;
-            border-radius: 50%; /* Asegura que la imagen sea circular */
-        }
-        /* No necesitamos :hover si la imagen ya tiene diseño */
-
 
 
 .map-embed {
@@ -544,6 +545,11 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* --- CAMBIO 3: COMPENSACIÓN PARA EL HEADER FIJO EN MÓVIL (HEADER APILADO) --- */
+    body {
+        padding-top: 200px; 
+    }
+
     header .container {
         flex-direction: column;
         text-align: center;
@@ -576,4 +582,5 @@ footer p {
     }
 
 }
+
 
