@@ -11,6 +11,11 @@
     --padding-section: 60px 0;
 }
 
+/* Corrección para contenido debajo del menú fijo */
+#inicio {
+    margin-top: 90px;
+}
+
 body {
     font-family: var(--font-family);
     line-height: 1.6;
@@ -71,6 +76,12 @@ header {
     color: var(--text-light);
     padding: 15px 0;
     border-bottom: 3px solid var(--primary-color);
+    /* --- INICIO de adición para Menú Fijo --- */
+    position: fixed; /* Fija el elemento a la ventana del navegador */
+    top: 0;          /* Lo posiciona en la parte superior de la ventana */
+    width: 100%;     /* Asegura que ocupe todo el ancho */
+    z-index: 1000;   /* Asegura que esté por encima de otros elementos */
+    /* --- FIN de adición para Menú Fijo --- */
 }
 
 header .container {
@@ -95,16 +106,42 @@ header .logo h1 {
     color: var(--text-light);
 }
 
+/* --- INICIO: Modificaciones para Menú Horizontal Desplazable (Scrollable) --- */
+header nav {
+    /* Permite el scroll horizontal cuando la lista ul es más ancha que la ventana */
+    overflow-x: auto; 
+    /* Oculta la barra de scroll vertical si es que aparece */
+    overflow-y: hidden;
+    /* Asegura que ocupe el espacio máximo permitido por el flexbox */
+    flex-grow: 1; 
+    /* Mejora el scroll en dispositivos táctiles */
+    -webkit-overflow-scrolling: touch; 
+}
+
 header nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
+    /* IMPORTANTE: Evita que los elementos se envuelvan a una nueva línea */
+    flex-wrap: nowrap; 
+    /* Opcional: Asegurar que el ul ocupe el ancho necesario para todos los elementos */
+    width: max-content; 
 }
+/* --- FIN: Modificaciones para Menú Horizontal Desplazable (Scrollable) --- */
 
 header nav ul li {
     margin-left: 20px;
+    /* Añadir un poco de padding vertical a los li para que el área de scroll sea más generosa en móviles */
+    padding: 5px 0; 
+    /* Eliminar el espacio a la izquierda del primer elemento li para que el scroll comience correctamente en el borde */
+    white-space: nowrap; /* Evita que el texto de los enlaces se rompa */
 }
+
+header nav ul li:first-child {
+    margin-left: 0;
+}
+
 
 header nav ul li a {
     color: var(--text-light);
@@ -155,9 +192,8 @@ header nav ul li a:hover {
     font-size: 1.2em;
     margin-bottom: 30px;
 }
-
-/* Services Grid */
-.service-grid {
+/* Nuevo diseño de Tarjetas y Cuadrículas */
+.card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
@@ -165,21 +201,103 @@ header nav ul li a:hover {
     text-align: center;
 }
 
-.service-item {
+.service-card {
     background: #fff;
     padding: 30px;
     border-radius: var(--border-radius);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.service-card i {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.service-card h4 {
+    margin: 0 0 10px;
+    color: var(--secondary-color);
+}
+
+.service-card p {
+    color: #666;
+}
+
+/* Rediseño de la sección de Instructores */
+.instructors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.instructor-card {
+    background: var(--light-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    border-top: 4px solid var(--primary-color);
     transition: transform 0.3s ease;
 }
 
-.service-item:hover {
+.instructor-card:hover {
     transform: translateY(-5px);
 }
 
-.service-item h4 {
-    color: var(--primary-color);
+.instructor-card h5 {
+    color: var(--secondary-color);
     margin-top: 0;
+    font-size: 1.5em;
+    position: relative;
+}
+
+.instructor-card h5::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background: var(--primary-color);
+    margin: 10px auto 0;
+}
+
+.instructor-card p {
+    color: #666;
+    font-style: italic;
+    margin-top: 15px;
+}
+
+/* Rediseño de la sección de Contacto */
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.contact-info {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+
+/* Ajustes para pantallas grandes */
+@media (min-width: 992px) {
+    .contact-grid {
+        grid-template-columns: 1fr 1.5fr;
+        text-align: left;
+    }
 }
 
 /* Galería de Imágenes y Videos */
@@ -359,16 +477,13 @@ header nav ul li a:hover {
 
 /* Estilos para el enlace de WhatsApp */
 .whatsapp-link {
-    color: #25D366; /* Verde distintivo de WhatsApp */
+    color: #5c0c0c; /* Verde distintivo de WhatsApp */
     font-weight: bold; /* Hacerlo más negrita */
     text-decoration: none; /* Quitar subrayado por defecto */
     transition: color 0.3s ease, text-decoration 0.3s ease; /* Transición suave al pasar el ratón */
 }
 
-.whatsapp-link:hover {
-    color: #1DA851; /* Un verde un poco más oscuro al pasar el ratón */
-    text-decoration: underline; /* Subrayar al pasar el ratón */
-}
+
 
 .contact-info a {
     color: var(--primary-color);
@@ -378,6 +493,30 @@ header nav ul li a:hover {
 .contact-info a:hover {
     text-decoration: underline;
 }
+
+/* Estilo para el botón de WhatsApp Flotante */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            border-radius: 50px;
+            text-align: center;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 1000;
+            /* Estos estilos ya no son necesarios si usamos una imagen con sus propios colores */
+            /* display: flex; 
+            align-items: center;
+            justify-content: center; */
+        }
+        .whatsapp-float img {
+            width: 100%; /* La imagen ocupa todo el contenedor */
+            height: 100%;
+            border-radius: 50%; /* Asegura que la imagen sea circular */
+        }
+        /* No necesitamos :hover si la imagen ya tiene diseño */
+
 
 
 .map-embed {
@@ -436,13 +575,17 @@ footer p {
         text-align: center;
     }
 
+    /* En móviles, la navegación se vuelve scrollable horizontalmente */
+    /* Por lo tanto, no es necesario cambiar a flex-direction: column aquí */
     header nav ul {
-        flex-direction: column;
+        /* flex-direction: column; <--- ESTO SE ELIMINA para que funcione el scroll horizontal */
         margin-top: 15px;
+        /* Asegurarse de que el ul siga usando flex para el diseño horizontal */
+        flex-direction: row; 
     }
 
     header nav ul li {
-        margin: 5px 0;
+        margin: 5px 10px; /* Ajuste para mejor espaciado horizontal en móviles */
     }
 
     .hero h2 {
@@ -461,10 +604,5 @@ footer p {
         height: 300px; /* Ajusta la altura del mapa para móviles */
         padding-bottom: 0;
     }
- /* Estilos para el enlace de WhatsApp como un pequeño botón */
-
 
 }
-
-
-
