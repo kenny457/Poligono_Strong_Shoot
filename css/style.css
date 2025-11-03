@@ -11,9 +11,10 @@
     --padding-section: 60px 0;
 }
 
-/* Corrección para contenido debajo del menú fijo */
+/* Corrección para contenido debajo del menú fijo. Se mantiene. */
 #inicio {
-    margin-top: 90px;
+    /* El valor de 90px es una estimación. Puede requerir ajuste si el navbar de Bootstrap es más alto. */
+    margin-top: 90px; 
 }
 
 body {
@@ -70,89 +71,38 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--text-light);
 }
 
-/* Header */
-header {
-    background: var(--dark-bg);
-    color: var(--text-light);
-    padding: 15px 0;
-    border-bottom: 3px solid var(--primary-color);
-    /* --- INICIO de adición para Menú Fijo --- */
-    position: fixed; /* Fija el elemento a la ventana del navegador */
-    top: 0;          /* Lo posiciona en la parte superior de la ventana */
-    width: 100%;     /* Asegura que ocupe todo el ancho */
-    z-index: 1000;   /* Asegura que esté por encima de otros elementos */
-    /* --- FIN de adición para Menú Fijo --- */
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header .logo {
-    display: flex;
-    align-items: center;
-}
-
-header .logo img {
-    height: 50px; /* Ajusta el tamaño de tu logo */
-    margin-right: 10px;
-}
-
-header .logo h1 {
-    margin: 0;
-    font-size: 2em;
-    color: var(--text-light);
-}
-
-/* --- INICIO: Modificaciones para Menú Horizontal Desplazable (Scrollable) --- */
-header nav {
-    /* Permite el scroll horizontal cuando la lista ul es más ancha que la ventana */
-    overflow-x: auto; 
-    /* Oculta la barra de scroll vertical si es que aparece */
-    overflow-y: hidden;
-    /* Asegura que ocupe el espacio máximo permitido por el flexbox */
-    flex-grow: 1; 
-    /* Mejora el scroll en dispositivos táctiles */
-    -webkit-overflow-scrolling: touch; 
-}
-
-header nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    /* IMPORTANTE: Evita que los elementos se envuelvan a una nueva línea */
-    flex-wrap: nowrap; 
-    /* Opcional: Asegurar que el ul ocupe el ancho necesario para todos los elementos */
-    width: max-content; 
-}
-/* --- FIN: Modificaciones para Menú Horizontal Desplazable (Scrollable) --- */
-
-header nav ul li {
-    margin-left: 20px;
-    /* Añadir un poco de padding vertical a los li para que el área de scroll sea más generosa en móviles */
-    padding: 5px 0; 
-    /* Eliminar el espacio a la izquierda del primer elemento li para que el scroll comience correctamente en el borde */
-    white-space: nowrap; /* Evita que el texto de los enlaces se rompa */
-}
-
-header nav ul li:first-child {
-    margin-left: 0;
-}
-
-
-header nav ul li a {
-    color: var(--text-light);
-    text-decoration: none;
+/* --- NUEVOS ESTILOS PARA BOOTSTRAP NAVBAR --- */
+/* Estilo para los enlaces de navegación */
+.navbar-dark .navbar-nav .nav-link {
+    /* Usamos !important para asegurar que el color se aplique sobre el de Bootstrap */
+    color: var(--text-light) !important; 
     font-weight: bold;
     transition: color 0.3s ease;
 }
 
-header nav ul li a:hover {
-    color: var(--primary-color);
+/* Efecto hover */
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--primary-color) !important;
 }
+
+/* Ajustes para el logo y el texto de la marca */
+.navbar-brand {
+    /* Asegura que el color de la marca no sea sobrescrito por Bootstrap */
+    color: var(--text-light) !important; 
+    display: flex;
+    align-items: center;
+}
+
+.navbar-brand span {
+    color: var(--text-light) !important;
+}
+
+/* Corrección de padding en el menú colapsado para móviles */
+.navbar-collapse {
+    padding-bottom: 10px;
+}
+
+/* --- FIN DE ESTILOS PARA BOOTSTRAP NAVBAR --- */
 
 /* Hero Section */
 .hero {
@@ -570,23 +520,6 @@ footer p {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    /* En móviles, la navegación se vuelve scrollable horizontalmente */
-    /* Por lo tanto, no es necesario cambiar a flex-direction: column aquí */
-    header nav ul {
-        /* flex-direction: column; <--- ESTO SE ELIMINA para que funcione el scroll horizontal */
-        margin-top: 15px;
-        /* Asegurarse de que el ul siga usando flex para el diseño horizontal */
-        flex-direction: row; 
-    }
-
-    header nav ul li {
-        margin: 5px 10px; /* Ajuste para mejor espaciado horizontal en móviles */
-    }
 
     .hero h2 {
         font-size: 2.2em;
